@@ -1,0 +1,90 @@
+body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('path/to/animated-background.gif') no-repeat center center fixed;
+      background-size: cover;
+      z-index: -1;
+      animation: backgroundAnimation 10s infinite alternate;
+    }
+
+    @keyframes backgroundAnimation {
+      0% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    header {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    main {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .feature-cards {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 0 10px;
+      width: 200px;
+    }
+
+    .cta-button {
+      background: #ff5722;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background: #e64a19;
+    }
