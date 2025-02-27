@@ -1,0 +1,52 @@
+.container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+    }
+
+    .content {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .feature-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px;
+      width: 150px;
+    }
+
+    .card-title {
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .card-description {
+      color: #fff;
+    }
+
+    .cta-button {
+      background-color: #ff5722;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }

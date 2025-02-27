@@ -2,52 +2,107 @@ import React, { useEffect, useRef } from 'react';
     import './App.css';
 
     function App() {
-      const cursorTrailRef = useRef(null);
+      const canvasRef = useRef(null);
 
       useEffect(() => {
-        // Cursor trail effect
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        let points = [];
+        const numPoints = 30; // Number of points
+        const connectionDistance = 150; // Distance within which points connect
+
+        // Create points with random positions and velocities
+        for (let i = 0; i < numPoints; i++) {
+          points.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+          });
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+
         const handleMouseMove = (event) => {
-          const trail = cursorTrailRef.current;
-          if (!trail) return;
-
-          const trailDot = document.createElement('div');
-          trailDot.className = 'cursor-trail-dot';
-          trailDot.style.left = `${event.clientX}px`;
-          trailDot.style.top = `${event.clientY}px`;
-          trail.appendChild(trailDot);
-
-          // Remove dots after a delay
-          setTimeout(() => {
-            trailDot.remove();
-          }, 300);
+          mouseX = event.clientX;
+          mouseY = event.clientY;
         };
 
         document.addEventListener('mousemove', handleMouseMove);
-        return () => document.removeEventListener('mousemove', handleMouseMove);
-      }, []);
 
-        useEffect(() => {
-          const handleScroll = () => {
-            const scrollPosition = window.scrollY;
+        const animate = () => {
+          ctx.clearRect(0, 0, width, height); // Clear canvas
 
-            // Animate feature cards on scroll
-            document.querySelectorAll('.card').forEach(card => {
-              const cardTop = card.getBoundingClientRect().top;
-              const windowHeight = window.innerHeight;
-              if (cardTop < windowHeight * 0.8) { // Adjust trigger point as needed
-                card.classList.add('card-visible');
+          // Update point positions
+          for (let i = 0; i < points.length; i++) {
+            points[i].x += points[i].vx;
+            points[i].y += points[i].vy;
+
+            // Wrap around edges
+            if (points[i].x < 0) points[i].x = width;
+            if (points[i].x > width) points[i].x = 0;
+            if (points[i].y < 0) points[i].y = height;
+            if (points[i].y > height) points[i].y = 0;
+
+            // Magnetic attraction to mouse
+            const dx = points[i].x - mouseX;
+            const dy = points[i].y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 200) { // Attraction radius
+              const force = (200 - dist) / 200; // Stronger attraction closer
+              points[i].x -= dx * force * 0.05; // Adjust attraction strength
+              points[i].y -= dy * force * 0.05;
+            }
+          }
+
+          // Draw lines between points
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(76, 175, 80, 0.5)'; // Green lines, semi-transparent
+          for (let i = 0; i < points.length; i++) {
+            for (let j = i + 1; j < points.length; j++) {
+              const dx = points[i].x - points[j].x;
+              const dy = points[i].y - points[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < connectionDistance) {
+                ctx.moveTo(points[i].x, points[i].y);
+                ctx.lineTo(points[j].x, points[j].y);
               }
-            });
-          };
+            }
+          }
+          ctx.stroke();
 
-          window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
+          requestAnimationFrame(animate); // Call animate() again for next frame
+        };
+
+        animate(); // Start the animation
+
+        const handleResize = () => {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width;
+          canvas.height = height;
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
 
       return (
         <div className="container">
-          <div className="background"></div>
-          <div className="cursor-trail" ref={cursorTrailRef}></div>
+          <div className="background">
+            <canvas ref={canvasRef}></canvas>
+          </div>
           <header>
             <nav className="navbar">
               <div className="logo">Lifepath Adventure</div>
@@ -87,7 +142,7 @@ import React, { useEffect, useRef } from 'react';
             </section>
             <section id="about">
               <h2>About the Game</h2>
-              <p>Lifepath Adventure is a pixelated sci-fi RPG that combines exploration, strategic combat, and deep character customization.  Unravel the mysteries of a lost civilization and shape your own destiny.</p>
+              <p>Lifepath Adventure is a pixelated sci-fi RPG that combines exploration, strategic combat, and deep character customization. Unravel the mysteries of a lost civilization and shape your own destiny.</p>
             </section>
           </main>
           <footer>
