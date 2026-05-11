@@ -100,8 +100,9 @@ function App() {
 
   return (
     <div className="container">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <div className="background">
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
       <header>
         <nav className="navbar">
@@ -114,7 +115,7 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main>
+      <main id="main-content">
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>

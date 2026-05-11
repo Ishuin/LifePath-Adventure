@@ -1,0 +1,3 @@
+## 2024-05-17 - Skip Link and Canvas Accessibility
+**Learning:** In single-page applications with decorative canvas backgrounds, it is critical to add `aria-hidden="true"` to the canvas container to prevent screen readers from announcing meaningless visual elements. Additionally, providing a "Skip to main content" link is crucial for keyboard users to bypass repetitive navigation links, and it integrates well with `scroll-behavior: smooth` for a seamless experience.
+**Action:** Always verify if full-screen visual effects (like canvas animations) are decorative and apply `aria-hidden="true"` if so. Ensure a skip link is present and properly targets the main content area in SPAs.
