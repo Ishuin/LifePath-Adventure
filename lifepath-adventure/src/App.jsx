@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './App.css';
 
 function App() {
@@ -100,11 +100,11 @@ function App() {
 
   return (
     <div className="container">
-      <div className="background">
+      <div className="background" aria-hidden="true">
         <canvas ref={canvasRef}></canvas>
       </div>
       <header>
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Main Navigation">
           <div className="logo">Lifepath Adventure</div>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
