@@ -100,7 +100,7 @@ function App() {
 
   return (
     <div className="container">
-      <div className="background">
+      <div className="background" aria-hidden="true">
         <canvas ref={canvasRef}></canvas>
       </div>
       <header>
@@ -118,7 +118,9 @@ function App() {
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <button className="cta-button">Explore Now</button>
+          <button className="cta-button" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+            Explore Now
+          </button>
         </section>
         <section id="features">
           <h2>Key Features</h2>

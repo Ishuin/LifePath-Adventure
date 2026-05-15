@@ -1,0 +1,3 @@
+## 2026-05-15 - Single-Page Scrolling and Screen Reader Decor
+**Learning:** Decorative background animations, like custom canvas elements often used in modern single-page apps, can create noise for screen readers. They must be explicitly hidden using aria-hidden. Also, users expect call-to-action buttons in hero sections to navigate smoothly down the page, making scrollIntoView and smooth scrolling CSS essential for a unified UX.
+**Action:** Always verify if non-interactive visual elements are hidden from accessibility tools, and ensure in-page links and hero CTAs use smooth scrolling to guide the users focus naturally.
