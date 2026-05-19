@@ -1,0 +1,3 @@
+## 2024-03-24 - Screen Reader Tree Pollution from Canvas Animations
+**Learning:** Decorative `<canvas>` elements used for high-performance background animations (like the particle system in Lifepath Adventure) can inadvertently pollute the accessibility tree if screen readers attempt to parse them.
+**Action:** Always add `aria-hidden="true"` to `<canvas>` elements that are purely decorative and provide no interactive or informative content, ensuring a cleaner experience for assistive technology users.
