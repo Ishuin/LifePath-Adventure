@@ -1,0 +1,1 @@
+## 2026-05-26 - Accessibility: Focus Styles & ARIA\n**Learning:** Decorative background animations via canvas need explicit `aria-hidden='true'` to avoid cluttering screen reader experiences.\n**Action:** Always add `aria-hidden='true'` to non-informative graphical elements and explicitly style `:focus-visible` for key navigation elements.
