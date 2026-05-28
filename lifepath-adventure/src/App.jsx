@@ -101,7 +101,7 @@ function App() {
   return (
     <div className="container">
       <div className="background">
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
       <header>
         <nav className="navbar">
