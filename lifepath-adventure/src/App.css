@@ -86,13 +86,21 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover::before {
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before {
   width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
   color: #4CAF50;
   transform: translateY(-2px); /* Slight lift */
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 main {
@@ -140,9 +148,15 @@ h1 {
   animation-fill-mode: backwards;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus-visible {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.cta-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
 }
 
 .feature-cards {
