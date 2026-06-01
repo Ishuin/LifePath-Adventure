@@ -1,0 +1,3 @@
+## 2024-06-01 - [Canvas Background Accessibility]
+**Learning:** Decorative background animations (like the canvas in this app) can be confusing for screen readers if not properly hidden, and custom UI components often miss built-in focus indicators for keyboard users.
+**Action:** Always add `aria-hidden="true"` to wrapper elements of decorative canvas/animations, and explicitly define `:focus-visible` styles for interactive elements (like buttons and links) to ensure keyboard navigation accessibility.
