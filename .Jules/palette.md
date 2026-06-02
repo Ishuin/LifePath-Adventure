@@ -1,0 +1,3 @@
+## 2024-06-02 - Focus States for Interactive Elements
+**Learning:** The application lacks visual feedback when navigating interactively using a keyboard, which makes it challenging for users relying on non-pointer inputs. Specifically, `.nav-links a` and `.cta-button` elements don't show any focus indicators.
+**Action:** Adding `:focus-visible` states using CSS outlines directly aligned with existing interactive components enhances keyboard accessibility natively without disrupting pointer users.
