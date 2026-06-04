@@ -1,0 +1,3 @@
+## 2024-06-04 - Improve Screen Reader Experience and Keyboard Focus
+**Learning:** Decorative background elements like animated `<canvas>` tags can be confusing or disruptive to screen reader users if not explicitly hidden. Additionally, relying solely on hover states for interactive elements like navigation links and CTA buttons ignores users who navigate via keyboard.
+**Action:** Always add `aria-hidden="true"` to non-informational background `<canvas>` elements to remove them from the accessibility tree. Implement `:focus-visible` styles for all interactive elements to provide clear visual feedback during keyboard navigation without impacting mouse users.
