@@ -1,0 +1,3 @@
+## 2024-06-07 - Screen Reader & Keyboard Navigation
+**Learning:** Decorative background canvas animations can confuse screen readers if not explicitly hidden. Additionally, custom CSS overrides often remove default browser focus rings, leaving keyboard users without visual feedback when tabbing through interactive elements like navigation links and buttons.
+**Action:** Always add `aria-hidden="true"` to wrapper elements of decorative canvases to prevent screen reader announcements. When using custom styling, always explicitly define `:focus-visible` styles with sufficient outline thickness and offset to ensure keyboard accessibility.

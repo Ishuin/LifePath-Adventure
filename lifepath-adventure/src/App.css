@@ -95,6 +95,12 @@ body {
   transform: translateY(-2px); /* Slight lift */
 }
 
+.nav-links a:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 main {
   position: relative; /* For positioning content */
   z-index: 10;
@@ -143,6 +149,12 @@ h1 {
 .cta-button:hover {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 .feature-cards {
