@@ -118,23 +118,23 @@ function App() {
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <button className="cta-button">Explore Now</button>
+          <a href="#features" className="cta-button">Explore Now</a>
         </section>
         <section id="features">
           <h2>Key Features</h2>
           <div className="feature-cards">
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="Explore" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="" aria-hidden="true" />
               <h3>Explore</h3>
               <p>Discover vast and diverse worlds.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="Battle" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="" aria-hidden="true" />
               <h3>Battle</h3>
               <p>Engage in strategic combat.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="Customize" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="" aria-hidden="true" />
               <h3>Customize</h3>
               <p>Forge your unique character.</p>
             </div>

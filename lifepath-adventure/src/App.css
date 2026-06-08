@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Electrolize', sans-serif;
@@ -86,11 +90,13 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover::before {
+.nav-links a:hover::before,
+.nav-links a:focus-visible::before {
   width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
   color: #4CAF50;
   transform: translateY(-2px); /* Slight lift */
 }
@@ -126,7 +132,16 @@ h1 {
   animation-fill-mode: backwards; /* Keep element hidden before animation */
 }
 
+/* Global focus-visible styles */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .cta-button {
+  display: inline-block;
+  text-decoration: none;
   background-color: #4CAF50;
   color: #fff;
   padding: 15px 30px;
@@ -140,7 +155,8 @@ h1 {
   animation-fill-mode: backwards;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus-visible {
   background-color: #388E3C;
   transform: scale(1.05);
 }

@@ -1,0 +1,3 @@
+## 2024-06-08 - Redundant Alt Text on Decorative Feature Images
+**Learning:** Providing explicit `alt` text (e.g., `alt="Explore"`) on generic, icon-like, or placeholder images that immediately precede headings with the exact same text ("Explore") creates redundant and annoying noise for screen reader users, who hear the text twice.
+**Action:** When an image is purely decorative or illustrative of the immediately following heading text, set `alt=""` and add `aria-hidden="true"` to remove it from the accessibility tree, making the experience smoother for assistive technology users.
