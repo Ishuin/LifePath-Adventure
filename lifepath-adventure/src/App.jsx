@@ -104,7 +104,7 @@ function App() {
         <canvas ref={canvasRef}></canvas>
       </div>
       <header>
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Main Navigation">
           <div className="logo">Lifepath Adventure</div>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
@@ -118,23 +118,23 @@ function App() {
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <button className="cta-button">Explore Now</button>
+          <button className="cta-button" onClick={() => document.getElementById('features').scrollIntoView({ behavior: 'smooth' })}>Explore Now</button>
         </section>
         <section id="features">
           <h2>Key Features</h2>
           <div className="feature-cards">
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="Explore" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="" aria-hidden="true" />
               <h3>Explore</h3>
               <p>Discover vast and diverse worlds.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="Battle" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="" aria-hidden="true" />
               <h3>Battle</h3>
               <p>Engage in strategic combat.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="Customize" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="" aria-hidden="true" />
               <h3>Customize</h3>
               <p>Forge your unique character.</p>
             </div>
