@@ -1,0 +1,3 @@
+## 2024-06-13 - Decorative Background Animation Screen Reader Noise
+**Learning:** Decorative background elements containing dynamic content (like a `<canvas>` playing fluid animations) can create unnecessary noise and confusion for screen reader users if they enter the accessibility tree, as they provide no meaningful content. Additionally, interactive elements often lack `:focus-visible` styling when they rely purely on hover or default focus rings, failing to provide equitable visual feedback for keyboard users.
+**Action:** Always add `aria-hidden="true"` to purely decorative background containers. Consistently pair `:hover` transition styles with `:focus-visible` states to ensure keyboard navigation is as visually obvious and satisfying as mouse interaction.
