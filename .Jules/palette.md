@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility improvements for canvas and focus states
+**Learning:** Decorative background elements implemented with `<canvas>` are not automatically ignored by screen readers, leading to confusing auditory noise. Additionally, custom anchor link styles often overwrite default browser focus outlines, creating a regression in keyboard navigation accessibility.
+**Action:** Always add `aria-hidden="true"` to `<canvas>` elements used purely for visual effects. Explicitly define `:focus-visible` styles for all custom interactive elements (links, buttons) to ensure clear keyboard navigation indicators without impacting mouse users.
