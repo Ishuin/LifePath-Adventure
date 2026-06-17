@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Electrolize', sans-serif;
@@ -95,6 +99,12 @@ body {
   transform: translateY(-2px); /* Slight lift */
 }
 
+.nav-links a:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 main {
   position: relative; /* For positioning content */
   z-index: 10;
@@ -138,11 +148,18 @@ h1 {
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   animation: fadeIn 2s ease-out 1s; /* Further delayed fade-in */
   animation-fill-mode: backwards;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .cta-button:hover {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.cta-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
 }
 
 .feature-cards {

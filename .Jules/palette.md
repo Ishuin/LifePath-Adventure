@@ -1,0 +1,3 @@
+## 2024-06-17 - Semantic Anchors for In-Page Navigation
+**Learning:** Using an unstyled `<button>` instead of a semantic `<a>` tag for in-page navigation (like scrolling to a #features section) breaks expected keyboard/screen reader behavior and fails to communicate the element's destination. Background canvas animations should also explicitly use `aria-hidden=\true\` to avoid confusing screen readers with meaningless generic DOM elements.
+**Action:** Always use semantic `<a href=\#id\>` with appropriate styling for in-page navigation links, ensure they have `:focus-visible` states, and explicitly hide decorative/ambient canvases using ARIA.
