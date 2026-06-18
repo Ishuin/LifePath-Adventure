@@ -1,0 +1,3 @@
+## 2024-05-18 - Avoid Buttons for In-Page Navigation
+**Learning:** Using `<button>` elements for in-page navigation (like scrolling to a section) breaks native link behaviors (e.g., right-click to "Open in new tab", copy link address) and violates semantic HTML accessibility principles. Screen readers treat buttons as actions rather than navigational elements.
+**Action:** Always use semantic `<a>` tags with appropriate `href` targets for navigating between or within pages, styling them to look like buttons if visually required. Ensure `:focus-visible` is implemented to maintain keyboard navigation clarity.
