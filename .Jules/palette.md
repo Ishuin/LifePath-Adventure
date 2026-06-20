@@ -1,0 +1,3 @@
+## 2024-05-24 - Semantic Navigation Buttons
+**Learning:** Using `<button>` tags for in-page navigation (like scrolling to a "#features" section) breaks semantic HTML and creates poor experiences for screen readers and keyboard users who expect anchor links for navigation. Also, decorative backgrounds like a `<canvas>` element need to be explicitly hidden from screen readers.
+**Action:** Always use semantic `<a>` tags with appropriate `href` targets and button-like CSS (e.g., `display: inline-block`, `text-decoration: none`) for in-page section links. Ensure decorative background containers have `aria-hidden="true"`.
