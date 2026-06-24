@@ -1,0 +1,3 @@
+## 2024-05-28 - In-Page Navigation Buttons
+**Learning:** Generic `<button>` elements used for in-page navigation (scrolling to sections) break expected screen reader and keyboard behaviors because they lack an `href` attribute and semantic linkage to the target section.
+**Action:** Always use semantic `<a>` tags with appropriate `href="#target-id"` for in-page navigation to maintain proper accessibility, applying CSS (e.g., `display: inline-block; text-decoration: none;`) to mimic button styling if visually required.
