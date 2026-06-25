@@ -1,0 +1,3 @@
+## 2024-05-20 - Semantic In-Page Navigation
+**Learning:** In-page navigation elements (like "Explore Now" scrolling to a `#features` section) styled as buttons must use semantic `<a>` tags with appropriate `href` targets, not `<button>` tags. This ensures correct screen reader announcements and native keyboard navigation behavior (like opening in new tabs, though not applicable here, it maintains consistent mental models for users).
+**Action:** When auditing or implementing hero sections or "jump to" links styled as CTA buttons, verify they use `<a>` tags with `display: inline-block` and `text-decoration: none`, rather than `<button>` elements with click handlers.

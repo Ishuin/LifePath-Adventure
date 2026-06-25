@@ -118,7 +118,7 @@ function App() {
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <button className="cta-button">Explore Now</button>
+          <a href="#features" className="cta-button">Explore Now</a>
         </section>
         <section id="features">
           <h2>Key Features</h2>

@@ -134,6 +134,8 @@ h1 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   animation: fadeIn 2s ease-out 1s; /* Further delayed fade-in */
@@ -143,6 +145,11 @@ h1 {
 .cta-button:hover {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
 }
 
 .feature-cards {
