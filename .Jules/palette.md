@@ -1,0 +1,3 @@
+## 2025-02-19 - Semantic Navigation Elements
+**Learning:** For in-page navigation (e.g., scrolling to a section like #features), always use semantic `<a>` tags with appropriate `href` targets instead of `<button>` elements. This maintains correct keyboard tab order, ensures the link is discoverable by screen readers, and leverages native browser behavior (like 'open in new tab' and URL updates).
+**Action:** When creating call-to-action elements that navigate the user within the page, default to `<a>` tags and style them to look like buttons using CSS (e.g., adding `display: inline-block; text-decoration: none;`), rather than using `<button>` elements that require JavaScript to function as links.
