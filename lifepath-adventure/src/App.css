@@ -134,10 +134,18 @@ h1 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   animation: fadeIn 2s ease-out 1s; /* Further delayed fade-in */
   animation-fill-mode: backwards;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
 }
 
 .cta-button:hover {
