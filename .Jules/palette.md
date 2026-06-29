@@ -1,0 +1,3 @@
+## 2024-06-29 - Semantic Navigation Elements
+**Learning:** In-page navigation that uses non-semantic `<button>` elements (e.g. for smooth scrolling or jumping to sections) causes poor screen reader support and violates accessibility expectations, even when styled like a button. Users with assistive technology rely on proper semantic anchors to understand navigation intents.
+**Action:** Always use semantic `<a>` tags with appropriate `href` targets (e.g., `#features`) for in-page navigation rather than relying on buttons with onClick handlers. Use CSS to style them as buttons when visually required (like `.cta-button` using `display: inline-block` and `text-decoration: none`).
