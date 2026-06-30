@@ -1,0 +1,3 @@
+## 2024-06-30 - Semantic Navigation for In-Page Anchors
+**Learning:** For in-page navigation (e.g., scroll-to-section features like "Explore Now"), using `<button>` elements leads to suboptimal keyboard routing and incorrect semantics. While buttons work with JavaScript, screen readers don't anticipate them to act as navigation links.
+**Action:** Always use semantic `<a>` tags with appropriate `href` targets (like `href="#features"`) for in-page anchors instead of `<button>` elements to maintain correct keyboard and screen reader behavior. Ensure CSS covers standard anchor resets like `text-decoration: none` and `display: inline-block` when styling links to look like buttons.
