@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './App.css';
 
 function App() {
@@ -98,10 +98,17 @@ function App() {
     };
   }, []);
 
+  const handleExploreClick = () => {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="container">
       <div className="background">
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
       <header>
         <nav className="navbar">
@@ -118,7 +125,7 @@ function App() {
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <button className="cta-button">Explore Now</button>
+          <button className="cta-button" onClick={handleExploreClick}>Explore Now</button>
         </section>
         <section id="features">
           <h2>Key Features</h2>
