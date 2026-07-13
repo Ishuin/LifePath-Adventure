@@ -47,7 +47,13 @@ jobs:
         run: npm run build
 
       - name: Configure Pages
+        # enablement: true turns on GitHub Pages (with "GitHub Actions" as the
+        # source) automatically on the first run, so no manual Settings change is
+        # needed in most cases. If your org restricts this, enable it manually:
+        # Settings → Pages → Source → "GitHub Actions".
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
