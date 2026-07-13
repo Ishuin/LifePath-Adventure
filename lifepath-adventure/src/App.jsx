@@ -1,6 +1,20 @@
 import { useEffect, useRef } from 'react';
 import './App.css';
 
+// Self-contained inline SVG tile used as a decorative feature icon.
+// (Replaces the old via.placeholder.com images, which are a dead service.)
+const featureTile = (letter) =>
+  'data:image/svg+xml,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">' +
+      '<rect width="150" height="150" rx="16" fill="#4CAF50"/>' +
+      '<text x="75" y="99" font-family="Arial, Helvetica, sans-serif" font-size="72" ' +
+      'font-weight="700" fill="#ffffff" text-anchor="middle">' +
+      letter +
+      '</text>' +
+      '</svg>'
+  );
+
 function App() {
   const canvasRef = useRef(null);
 
@@ -98,6 +112,41 @@ function App() {
     };
   }, []);
 
+  // Reveal the feature cards as they scroll into view. The cards start at
+  // opacity:0 in CSS and only become visible via the `card-visible` class, so
+  // without this effect the entire "Key Features" section stays blank.
+  useEffect(() => {
+    const cards = document.querySelectorAll('.card');
+    if (!cards.length) return;
+
+    const reveal = (el) => el.classList.add('card-visible');
+
+    const prefersReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    // No animation support (or the user prefers reduced motion): show them all.
+    if (prefersReduced || typeof IntersectionObserver === 'undefined') {
+      cards.forEach(reveal);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            reveal(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="container">
       <div className="background">
@@ -124,17 +173,17 @@ function App() {
           <h2>Key Features</h2>
           <div className="feature-cards">
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="" />
+              <img src={featureTile('E')} alt="" />
               <h3>Explore</h3>
               <p>Discover vast and diverse worlds.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="" />
+              <img src={featureTile('B')} alt="" />
               <h3>Battle</h3>
               <p>Engage in strategic combat.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="" />
+              <img src={featureTile('C')} alt="" />
               <h3>Customize</h3>
               <p>Forge your unique character.</p>
             </div>
