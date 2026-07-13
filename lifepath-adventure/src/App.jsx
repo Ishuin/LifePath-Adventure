@@ -124,17 +124,17 @@ function App() {
           <h2>Key Features</h2>
           <div className="feature-cards">
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="Explore" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Explore" alt="" />
               <h3>Explore</h3>
               <p>Discover vast and diverse worlds.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="Battle" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Battle" alt="" />
               <h3>Battle</h3>
               <p>Engage in strategic combat.</p>
             </div>
             <div className="card">
-              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="Customize" />
+              <img src="https://via.placeholder.com/150/4CAF50/FFFFFF?text=Customize" alt="" />
               <h3>Customize</h3>
               <p>Forge your unique character.</p>
             </div>
