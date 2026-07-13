@@ -1,0 +1,72 @@
+name: Deploy website to GitHub Pages
+
+# Builds the Vite + React app in lifepath-adventure/ and publishes it to
+# GitHub Pages, giving a public URL: https://ishuin.github.io/LifePath-Adventure/
+#
+# One-time setup required: in the repository, go to
+# Settings → Pages → "Build and deployment" → Source → select "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lifepath-adventure/**'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+# Permissions needed by the Pages deploy action.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment; don't cancel in-progress production runs.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lifepath-adventure
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure Pages
+        # enablement: true turns on GitHub Pages (with "GitHub Actions" as the
+        # source) automatically on the first run, so no manual Settings change is
+        # needed in most cases. If your org restricts this, enable it manually:
+        # Settings → Pages → Source → "GitHub Actions".
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: lifepath-adventure/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
