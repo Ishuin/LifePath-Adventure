@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* LifePath theme tokens (ported from the sci-fi landing: near-black navy + green). */
+@theme {
+  --color-bg: #050a19;
+  --color-bg-elev: #0b1020;
+  --color-indigo: #1a237e;
+  --color-accent: #4caf50;
+  --color-accent-strong: #388e3c;
+  --color-fg: #ffffff;
+  --color-muted: #9aa4b2;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Reusable glass surface for nav/cards/footer. */
+.glass {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.text-glow {
+  text-shadow: 0 0 15px var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
