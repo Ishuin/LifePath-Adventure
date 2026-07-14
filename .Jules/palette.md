@@ -8,3 +8,6 @@
 ## 2024-07-13 - Redundant Alt Text on Feature Icons
 **Learning:** Images immediately adjacent to identical heading text cause redundant and annoying screen reader announcements if they have matching `alt` text.
 **Action:** Use empty `alt=""` attributes for such images to treat them as decorative and skip redundant announcements.
+## 2026-07-14 - Dynamic Accessibility Visually Hidden State
+**Learning:** When strict constraints prevent adding custom CSS (like `.sr-only`) but accessibility requires visually hidden elements that become visible on focus (like skip links), React's inline styles combined with `onFocus`/`onBlur` event state can provide a viable, though less idiomatic, workaround.
+**Action:** Use inline styles to toggle `position: absolute`, `left`, and `clip` properties dynamically based on local focus state when custom CSS is prohibited.
