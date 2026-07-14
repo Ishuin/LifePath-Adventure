@@ -9,18 +9,36 @@ Stack: **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind v4**,
 default), deployed on **Vercel**. See `../IMPROVEMENT_PLAN.md` and the plan file
 for the full roadmap.
 
-## Status: M0 (scaffold + auth + theme)
+## Status: M0–M2 (auth + schema + LLM path generation)
 
 Implemented:
 - Themed public landing page (`/`) with the animated constellation background.
 - Supabase auth: magic link + Google (`/login`, `/auth/callback`, `/auth/confirm`).
 - Session refresh + protected-route gating via `src/proxy.ts` (Next 16 renamed
   `middleware` → `proxy`).
-- Authenticated shell + placeholder dashboard (`/dashboard`).
+- Database schema, RLS, and signup trigger (`supabase/migrations/0001–0003`),
+  validated against real Postgres via PGlite (`npm run db:validate`).
+- Intake wizard (`/onboarding`) + goal dashboard (`/dashboard`).
+- **LLM path generation** (`src/lib/llm/*`): a provider-agnostic engine
+  (`LLMProvider` + `getProvider()`), Claude default via structured outputs and
+  an OpenAI alternate, a single Zod contract (`schema.ts`), DAG/reference
+  validators with repair-retry (`generatePlan.ts`), a `POST /api/plans/generate`
+  route + server action, and a transactional persistence RPC
+  (`0004_persist_plan.sql`) that remaps the model's step keys to row UUIDs and
+  commits the whole plan graph atomically (one active plan per goal).
 - Provider-agnostic env schema (`src/lib/env.ts`, `src/lib/env.server.ts`).
 
-Not yet built (later milestones): intake wizard, DB schema/migrations, LLM path
-generation, path graph + charts, progress/XP, multiple goals, regenerate.
+Not yet built (later milestones): path graph + skill/level charts + panels
+(M3), progress/XP + regenerate UI (M4), production deploy/hardening (M5).
+
+### Testing the path engine
+
+- `npm test` runs the Vitest suite (schema, validators, and the generate
+  orchestration/repair-retry against a deterministic mock provider — no network).
+- `npm run db:validate` applies all migrations to an in-process Postgres and
+  exercises `persist_generated_plan` end-to-end (key→UUID remapping, RLS
+  isolation, one-active-plan supersede).
+- Real Claude generation needs `ANTHROPIC_API_KEY` set locally.
 
 ## Local development
 
