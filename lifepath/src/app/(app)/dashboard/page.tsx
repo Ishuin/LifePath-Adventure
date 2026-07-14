@@ -1,29 +1,69 @@
+import Link from "next/link";
 import { requireUser } from "@/lib/auth";
+import { createClient } from "@/lib/supabase/server";
+import type { GoalRow } from "@/lib/db/types";
 
 export default async function DashboardPage() {
-  const user = await requireUser();
+  await requireUser();
+  const supabase = await createClient();
+  const { data: goals } = await supabase
+    .from("goals")
+    .select("id, title, description, status, created_at")
+    .order("created_at", { ascending: false })
+    .returns<GoalRow[]>();
+
+  const list = goals ?? [];
 
   return (
     <div>
-      <h1 className="text-3xl font-bold">Your goals</h1>
-      <p className="mt-2 text-[var(--color-muted)]">
-        Signed in as {user.email}.
-      </p>
-
-      {/* M1 will replace this with real goal cards + the intake wizard. */}
-      <div className="glass mt-8 rounded-xl p-10 text-center">
-        <p className="text-lg">No goals yet.</p>
-        <p className="mt-2 text-sm text-[var(--color-muted)]">
-          Creating goals and generating your LifePath arrives in the next
-          milestone.
-        </p>
-        <button
-          disabled
-          className="mt-6 cursor-not-allowed rounded-md bg-[var(--color-accent)] px-6 py-3 font-medium text-white opacity-50"
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">Your goals</h1>
+        <Link
+          href="/onboarding"
+          className="rounded-md bg-[var(--color-accent)] px-4 py-2 font-medium text-white hover:bg-[var(--color-accent-strong)]"
         >
-          New goal (coming soon)
-        </button>
+          New goal
+        </Link>
       </div>
+
+      {list.length === 0 ? (
+        <div className="glass mt-8 rounded-xl p-10 text-center">
+          <p className="text-lg">No goals yet.</p>
+          <p className="mt-2 text-sm text-[var(--color-muted)]">
+            Start your first path — describe where you are, where you&apos;ve
+            been, and where you want to go.
+          </p>
+          <Link
+            href="/onboarding"
+            className="mt-6 inline-block rounded-md bg-[var(--color-accent)] px-6 py-3 font-medium text-white hover:bg-[var(--color-accent-strong)]"
+          >
+            Start a path
+          </Link>
+        </div>
+      ) : (
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          {list.map((g) => (
+            <li key={g.id}>
+              <Link
+                href={`/goals/${g.id}`}
+                className="glass block rounded-xl p-6 transition hover:border-white/25"
+              >
+                <h2 className="text-lg font-semibold text-[var(--color-accent)]">
+                  {g.title}
+                </h2>
+                {g.description && (
+                  <p className="mt-2 line-clamp-2 text-sm text-[var(--color-muted)]">
+                    {g.description}
+                  </p>
+                )}
+                <p className="mt-3 text-xs text-[var(--color-muted)]">
+                  {g.status}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
