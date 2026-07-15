@@ -149,6 +149,34 @@ function App() {
 
   return (
     <div className="container">
+      <a
+        href="#main-content"
+        style={{
+          position: 'absolute',
+          top: '-100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: '#4CAF50',
+          color: '#fff',
+          padding: '10px 20px',
+          textDecoration: 'none',
+          fontWeight: 'bold',
+          borderRadius: '0 0 5px 5px',
+          zIndex: 1000,
+          transition: 'top 0.3s ease'
+        }}
+        onFocus={(e) => {
+          e.target.style.top = '0';
+          e.target.style.outline = '3px solid #fff';
+          e.target.style.outlineOffset = '-2px';
+        }}
+        onBlur={(e) => {
+          e.target.style.top = '-100px';
+          e.target.style.outline = 'none';
+        }}
+      >
+        Skip to main content
+      </a>
       <div className="background">
         <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
@@ -163,7 +191,7 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
