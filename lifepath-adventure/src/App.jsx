@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 // Self-contained inline SVG tile used as a decorative feature icon.
@@ -17,6 +17,7 @@ const featureTile = (letter) =>
 
 function App() {
   const canvasRef = useRef(null);
+  const [isSkipLinkVisible, setIsSkipLinkVisible] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -149,6 +150,24 @@ function App() {
 
   return (
     <div className="container">
+      <a
+        href="#main-content"
+        onFocus={() => setIsSkipLinkVisible(true)}
+        onBlur={() => setIsSkipLinkVisible(false)}
+        style={{
+          position: 'absolute',
+          top: isSkipLinkVisible ? '20px' : '-1000px',
+          left: '20px',
+          zIndex: 100,
+          padding: '10px',
+          background: '#4CAF50',
+          color: 'white',
+          textDecoration: 'none',
+          borderRadius: '5px'
+        }}
+      >
+        Skip to main content
+      </a>
       <div className="background">
         <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
@@ -163,7 +182,7 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main>
+      <main id="main-content">
         <section id="hero">
           <h1>Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>

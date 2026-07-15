@@ -8,3 +8,6 @@
 ## 2024-07-13 - Redundant Alt Text on Feature Icons
 **Learning:** Images immediately adjacent to identical heading text cause redundant and annoying screen reader announcements if they have matching `alt` text.
 **Action:** Use empty `alt=""` attributes for such images to treat them as decorative and skip redundant announcements.
+## 2024-07-15 - Using Inline Styles for Skip Links
+**Learning:** Adding a visually hidden "Skip to content" link can be challenging when custom CSS changes are restricted. Relying purely on CSS for visually hiding elements often requires new utility classes.
+**Action:** When custom CSS is constrained, use React state (`useState`) combined with inline styles, `onFocus`, and `onBlur` handlers on an anchor tag. Position it absolutely off-screen by default (e.g., `top: -1000px`), and bring it into view (e.g., `top: 20px`) when it receives keyboard focus, ensuring full accessibility without modifying CSS files.
