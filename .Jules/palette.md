@@ -11,3 +11,7 @@
 ## 2026-07-14 - Dynamic Accessibility Visually Hidden State
 **Learning:** When strict constraints prevent adding custom CSS (like `.sr-only`) but accessibility requires visually hidden elements that become visible on focus (like skip links), React's inline styles combined with `onFocus`/`onBlur` event state can provide a viable, though less idiomatic, workaround.
 **Action:** Use inline styles to toggle `position: absolute`, `left`, and `clip` properties dynamically based on local focus state when custom CSS is prohibited.
+
+## 2026-07-16 - Canvas Animation prefers-reduced-motion
+**Learning:** Continuous background canvas animations powered by `requestAnimationFrame` are entirely disconnected from CSS media queries and will violate WCAG guidelines by running indefinitely for users with reduced motion preferences.
+**Action:** When implementing custom JS/canvas animations, explicitly query `window.matchMedia('(prefers-reduced-motion: reduce)')` to conditionally skip or halt the recursive animation loop, providing a static fallback frame.

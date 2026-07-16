@@ -93,7 +93,13 @@ function App() {
       }
       ctx.stroke();
 
-      requestAnimationFrame(animate); // Call animate() again for next frame
+      const prefersReduced = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      if (!prefersReduced) {
+        requestAnimationFrame(animate); // Call animate() again for next frame
+      }
     };
 
     animate(); // Start the animation
