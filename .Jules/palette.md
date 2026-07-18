@@ -15,3 +15,7 @@
 ## 2026-07-16 - Canvas Animation prefers-reduced-motion
 **Learning:** Continuous background canvas animations powered by `requestAnimationFrame` are entirely disconnected from CSS media queries and will violate WCAG guidelines by running indefinitely for users with reduced motion preferences.
 **Action:** When implementing custom JS/canvas animations, explicitly query `window.matchMedia('(prefers-reduced-motion: reduce)')` to conditionally skip or halt the recursive animation loop, providing a static fallback frame.
+
+## 2024-03-24 - Comprehensive Reduced Motion Support
+**Learning:** Checking `prefers-reduced-motion` in JS for canvas animations is good, but it leaves CSS animations and smooth scrolling active. To fully support users with vestibular disorders, we need a CSS `@media (prefers-reduced-motion: reduce)` block to catch all CSS animations, transitions, and scroll behaviors.
+**Action:** Always include a CSS block targeting `*, *::before, *::after` with `animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important;` when implementing reduced motion, in addition to any JS-specific logic.
