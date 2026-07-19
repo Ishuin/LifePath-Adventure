@@ -187,13 +187,13 @@ function App() {
         <canvas ref={canvasRef} aria-hidden="true"></canvas>
       </div>
       <header>
-        <nav className="navbar">
-          <div className="logo">Lifepath Adventure</div>
+        <nav className="navbar" aria-label="Main navigation">
+          <a href="#hero" className="logo" aria-label="Lifepath Adventure, back to top" style={{ textDecoration: 'none' }}>Lifepath Adventure</a>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" style={{ opacity: 0.5, cursor: 'not-allowed' }} onClick={(e) => e.preventDefault()}>Gallery</a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" style={{ opacity: 0.5, cursor: 'not-allowed' }} onClick={(e) => e.preventDefault()}>Contact</a></li>
           </ul>
         </nav>
       </header>
