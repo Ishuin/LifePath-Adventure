@@ -9,7 +9,7 @@ Stack: **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind v4**,
 default), deployed on **Vercel**. See `../IMPROVEMENT_PLAN.md` and the plan file
 for the full roadmap.
 
-## Status: M0–M2 (auth + schema + LLM path generation)
+## Status: M0–M3 (auth + schema + LLM path generation + visualization)
 
 Implemented:
 - Themed public landing page (`/`) with the animated constellation background.
@@ -27,9 +27,18 @@ Implemented:
   (`0004_persist_plan.sql`) that remaps the model's step keys to row UUIDs and
   commits the whole plan graph atomically (one active plan per goal).
 - Provider-agnostic env schema (`src/lib/env.ts`, `src/lib/env.server.ts`).
+- **Plan visualization** (`/goals/[goalId]`): the goal detail page renders the
+  generated plan — a layered dependency graph of steps (`PathGraph`) paired with
+  an accessible, keyboard-navigable `StepTimeline`, a shared `StepDetailPanel`
+  (rationale, prerequisites/unlocks, linked skills & resources), current-vs-target
+  `SkillChart`, an XP `LevelChart`, and courses/certifications/budget/connections
+  panels. The graph and charts are dependency-free SVG/HTML with pure,
+  unit-tested layout (`src/lib/plan/layout.ts`) — no heavy client viz libraries —
+  and honor `prefers-reduced-motion`. Data is read back under RLS in
+  `src/lib/plan/query.ts`.
 
-Not yet built (later milestones): path graph + skill/level charts + panels
-(M3), progress/XP + regenerate UI (M4), production deploy/hardening (M5).
+Not yet built (later milestones): progress/XP tracking + step completion +
+regenerate history UI (M4), production deploy/hardening (M5).
 
 ### Testing the path engine
 
