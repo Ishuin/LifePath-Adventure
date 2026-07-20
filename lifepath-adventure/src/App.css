@@ -59,6 +59,12 @@ body {
   color: #4CAF50;
 }
 
+.logo:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
