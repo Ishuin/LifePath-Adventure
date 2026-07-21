@@ -148,7 +148,8 @@ h1 {
 
 .cta-button {
   background-color: #4CAF50;
-  color: #fff;
+  color: #050a19;
+  font-weight: bold;
   padding: 15px 30px;
   font-size: 1.2em;
   border: none;

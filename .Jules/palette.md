@@ -19,3 +19,7 @@
 ## 2024-03-24 - Comprehensive Reduced Motion Support
 **Learning:** Checking `prefers-reduced-motion` in JS for canvas animations is good, but it leaves CSS animations and smooth scrolling active. To fully support users with vestibular disorders, we need a CSS `@media (prefers-reduced-motion: reduce)` block to catch all CSS animations, transitions, and scroll behaviors.
 **Action:** Always include a CSS block targeting `*, *::before, *::after` with `animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important;` when implementing reduced motion, in addition to any JS-specific logic.
+
+## 2024-07-21 - Brand Colors and Contrast Failures
+**Learning:** Using white text (`#fff`) on brand green backgrounds (like `#4CAF50`) often fails WCAG AA contrast requirements (ratio 2.78:1 instead of required 4.5:1).
+**Action:** Always verify color contrast for primary buttons and skip links against their backgrounds. Use a dark background color (like the app's `#050a19`) or black for text on light/medium backgrounds to ensure readability and compliance.

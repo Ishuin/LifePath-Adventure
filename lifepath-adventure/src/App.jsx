@@ -163,7 +163,7 @@ function App() {
           left: '50%',
           transform: 'translateX(-50%)',
           backgroundColor: '#4CAF50',
-          color: '#fff',
+          color: '#050a19',
           padding: '10px 20px',
           textDecoration: 'none',
           fontWeight: 'bold',
