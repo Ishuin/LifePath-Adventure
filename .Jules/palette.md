@@ -23,3 +23,6 @@
 ## 2024-07-21 - Brand Colors and Contrast Failures
 **Learning:** Using white text (`#fff`) on brand green backgrounds (like `#4CAF50`) often fails WCAG AA contrast requirements (ratio 2.78:1 instead of required 4.5:1).
 **Action:** Always verify color contrast for primary buttons and skip links against their backgrounds. Use a dark background color (like the app's `#050a19`) or black for text on light/medium backgrounds to ensure readability and compliance.
+## 2024-07-22 - Untracked Node Modules Blocking Git Operations
+**Learning:** During frontend verification or test runs, standard `pnpm install` generates a `node_modules` directory. If this directory is not in `.gitignore`, subsequent git operations (like `git status`, `git checkout`, or `git apply`) can hang, fail with diff size warnings, or significantly slow down the workflow.
+**Action:** When working in repositories with `package.json`, proactively ensure `node_modules/` is in `.gitignore` before running build or install commands to keep the git working tree clean and performant.
