@@ -9,7 +9,7 @@ const featureTile = (letter) =>
     '<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">' +
       '<rect width="150" height="150" rx="16" fill="#4CAF50"/>' +
       '<text x="75" y="99" font-family="Arial, Helvetica, sans-serif" font-size="72" ' +
-      'font-weight="700" fill="#ffffff" text-anchor="middle">' +
+      'font-weight="700" fill="#050a19" text-anchor="middle">' +
       letter +
       '</text>' +
       '</svg>'
