@@ -96,11 +96,13 @@ body {
   transition: width 0.3s ease;
 }
 
-.nav-links a:hover::before {
+.nav-links a:not([aria-disabled="true"]):hover::before,
+.nav-links a:not([aria-disabled="true"]):focus-visible::before {
   width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:not([aria-disabled="true"]):hover,
+.nav-links a:not([aria-disabled="true"]):focus-visible {
   color: #4CAF50;
   transform: translateY(-2px); /* Slight lift */
 }
@@ -163,7 +165,8 @@ h1 {
   display: inline-block;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus-visible {
   background-color: #388E3C;
   transform: scale(1.05);
 }

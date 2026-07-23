@@ -26,3 +26,9 @@
 ## 2024-07-22 - Untracked Node Modules Blocking Git Operations
 **Learning:** During frontend verification or test runs, standard `pnpm install` generates a `node_modules` directory. If this directory is not in `.gitignore`, subsequent git operations (like `git status`, `git checkout`, or `git apply`) can hang, fail with diff size warnings, or significantly slow down the workflow.
 **Action:** When working in repositories with `package.json`, proactively ensure `node_modules/` is in `.gitignore` before running build or install commands to keep the git working tree clean and performant.
+## 2024-07-23 - Focus and Hover Visual Parity
+**Learning:** Keyboard users often miss out on the rich visual feedback (like animated underlines, color shifts, and scale transforms) provided to mouse users via `:hover` states, which degrades the overall interactive experience for accessibility-focused navigation.
+**Action:** Always map `:focus-visible` states to mirror `:hover` interactions for interactive elements like navigation links and call-to-action buttons. Ensure both states share the same transition properties and visual lifts to maintain parity between input methods.
+## 2024-07-23 - Screen Reader Semantic Landmarks
+**Learning:** Simply using `<section>` elements without naming them creates generic regions that are unhelpful to screen reader users trying to jump through content.
+**Action:** Enhance `<section>` landmarks by linking them to their corresponding heading elements via `aria-labelledby` (e.g., `<section aria-labelledby="heading-id"><h2 id="heading-id">...`). This assigns a descriptive, semantic name to the landmark region, significantly improving spatial navigation for assistive technologies.
