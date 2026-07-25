@@ -32,3 +32,6 @@
 ## 2024-07-23 - Screen Reader Semantic Landmarks
 **Learning:** Simply using `<section>` elements without naming them creates generic regions that are unhelpful to screen reader users trying to jump through content.
 **Action:** Enhance `<section>` landmarks by linking them to their corresponding heading elements via `aria-labelledby` (e.g., `<section aria-labelledby="heading-id"><h2 id="heading-id">...`). This assigns a descriptive, semantic name to the landmark region, significantly improving spatial navigation for assistive technologies.
+## 2024-05-24 - Sticky Position and Overflow
+**Learning:** `overflow: hidden` on a parent container breaks `position: sticky` for descendants. `overflow: clip` is a modern alternative that hides overflow without trapping sticky positioning.
+**Action:** Replace `overflow: hidden` with `overflow: clip` when sticky positioning is required within a container that needs to hide overflow.

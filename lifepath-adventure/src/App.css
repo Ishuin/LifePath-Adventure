@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px; /* Prevent anchor links from hiding under sticky header */
 }
 
 body {
@@ -14,7 +15,7 @@ body {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  overflow: hidden; /* Hide horizontal overflow */
+  overflow: clip;
 }
 
 /* Fluid background animation */
@@ -40,6 +41,13 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%; /* Ensure it spans full width */
 }
 
 /* Navbar */
