@@ -9,7 +9,7 @@ Stack: **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind v4**,
 default), deployed on **Vercel**. See `../IMPROVEMENT_PLAN.md` and the plan file
 for the full roadmap.
 
-## Status: M0–M3 (auth + schema + LLM path generation + visualization)
+## Status: M0–M4 (auth + schema + LLM generation + visualization + progress)
 
 Implemented:
 - Themed public landing page (`/`) with the animated constellation background.
@@ -36,9 +36,21 @@ Implemented:
   unit-tested layout (`src/lib/plan/layout.ts`) — no heavy client viz libraries —
   and honor `prefers-reduced-motion`. Data is read back under RLS in
   `src/lib/plan/query.ts`.
+- **Progress tracking** (M4): stepping a step through
+  locked → available → in_progress → done from the goal page (`StepActions`).
+  A transactional RPC (`0005_progress.sql`, `set_step_status`) appends to the
+  append-only `xp_events` ledger, unlocks/relocks dependents as prerequisites
+  complete, and recomputes the profile's XP + level. The global level derives
+  purely from the ledger via a triangular XP curve shared between SQL and
+  `src/lib/domain/xp.ts`, so undo is idempotent. A header `XpLevelBadge` and a
+  per-goal progress bar show the totals, with a level-up note on the crossing.
+  Multiple goals per user (dashboard lists all) and goal editing
+  (`/goals/[goalId]/edit`) round out the milestone; regenerate supersedes the
+  active plan while keeping history.
 
-Not yet built (later milestones): progress/XP tracking + step completion +
-regenerate history UI (M4), production deploy/hardening (M5).
+Not yet built (later milestone): production deploy + hardening — prod Supabase
+migrations via CI, Vercel prod env + domain, retire GitHub Pages, e2e in CI,
+rate-limited generation (M5).
 
 ### Testing the path engine
 
@@ -46,7 +58,8 @@ regenerate history UI (M4), production deploy/hardening (M5).
   orchestration/repair-retry against a deterministic mock provider — no network).
 - `npm run db:validate` applies all migrations to an in-process Postgres and
   exercises `persist_generated_plan` end-to-end (key→UUID remapping, RLS
-  isolation, one-active-plan supersede).
+  isolation, one-active-plan supersede) plus `set_step_status` progress
+  (XP ledger, dependent unlock/relock, level recompute, owner-scoping).
 - Real Claude generation needs `ANTHROPIC_API_KEY` set locally.
 
 ## Local development

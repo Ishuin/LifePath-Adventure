@@ -5,13 +5,20 @@ import type { PlanView } from "@/lib/plan/types";
 import { PathGraph } from "./PathGraph";
 import { StepTimeline } from "./StepTimeline";
 import { StepDetailPanel, type StepRelated } from "./StepDetailPanel";
+import { StepActions } from "./StepActions";
 
 /**
  * Ties the path visualization together: the graph and the timeline are two views
  * of the same steps, and selecting a step in either drives the shared detail
  * panel. Selection state lives here so both stay in sync.
  */
-export function PlanExplorer({ plan }: { plan: PlanView }) {
+export function PlanExplorer({
+  plan,
+  goalId,
+}: {
+  plan: PlanView;
+  goalId: string;
+}) {
   const initial = useMemo(() => {
     const available = plan.steps.find((s) => s.status === "available");
     return available?.id ?? plan.steps[0]?.id ?? null;
@@ -84,6 +91,7 @@ export function PlanExplorer({ plan }: { plan: PlanView }) {
       </div>
       <div className="lg:sticky lg:top-6 lg:self-start">
         <StepDetailPanel step={selectedStep} related={related} />
+        {selectedStep && <StepActions goalId={goalId} step={selectedStep} />}
       </div>
     </div>
   );

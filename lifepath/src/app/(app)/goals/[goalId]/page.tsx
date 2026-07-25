@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { loadActivePlan } from "@/lib/plan/query";
+import type { PlanView } from "@/lib/plan/types";
 import { PlanExplorer } from "@/components/plan/PlanExplorer";
 import { SkillChart } from "@/components/plan/SkillChart";
 import { LevelChart } from "@/components/plan/LevelChart";
@@ -65,6 +66,12 @@ export default async function GoalPage({
               </p>
             )}
           </div>
+          <Link
+            href={`/goals/${goalId}/edit`}
+            className="shrink-0 rounded-md border border-white/15 px-3 py-1.5 text-sm transition hover:bg-white/5"
+          >
+            Edit goal
+          </Link>
         </div>
       </div>
 
@@ -84,10 +91,13 @@ export default async function GoalPage({
           )}
 
           <section aria-labelledby="path-heading">
-            <h2 id="path-heading" className="mb-4 text-xl font-semibold">
-              Your path
-            </h2>
-            <PlanExplorer plan={plan} />
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+              <h2 id="path-heading" className="text-xl font-semibold">
+                Your path
+              </h2>
+              <PathProgress steps={plan.steps} />
+            </div>
+            <PlanExplorer plan={plan} goalId={goalId} />
           </section>
 
           {(plan.skills.length > 0 || plan.levels.length > 0) && (
@@ -126,6 +136,28 @@ export default async function GoalPage({
       ) : (
         <NoPlan goalId={goalId} latestStatus={latestStatus} />
       )}
+    </div>
+  );
+}
+
+function PathProgress({ steps }: { steps: PlanView["steps"] }) {
+  if (steps.length === 0) return null;
+  const done = steps.filter((s) => s.status === "done").length;
+  const pct = Math.round((done / steps.length) * 100);
+  return (
+    <div className="flex items-center gap-3">
+      <div
+        className="h-1.5 w-32 overflow-hidden rounded-full bg-white/10"
+        aria-hidden="true"
+      >
+        <div
+          className="h-full rounded-full bg-emerald-400"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <span className="text-sm text-[var(--color-muted)]">
+        {done} of {steps.length} done
+      </span>
     </div>
   );
 }

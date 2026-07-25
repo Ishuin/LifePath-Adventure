@@ -39,6 +39,7 @@ for (const f of [
   "0002_rls.sql",
   "0003_triggers.sql",
   "0004_persist_plan.sql",
+  "0005_progress.sql",
 ]) {
   await db.exec(mig(f));
   console.log(`applied ${f}`);
@@ -214,6 +215,77 @@ if (planStates.total !== 2 || planStates.active !== 1 || planStates.old_status !
   throw new Error(`regenerate/supersede wrong: ${JSON.stringify(planStates)}`);
 }
 console.log("regenerate supersedes prior active plan (one active per goal): OK");
+
+// --- Progress tracking: set_step_status ledger + unlocking + leveling. --------
+// Operate on the active plan (planId2). Fetch its step ids by title.
+const stepId = async (title) =>
+  (
+    await scalar(
+      uA,
+      `select id from plan_steps where plan_id='${planId2}' and title='${title}'`,
+    )
+  ).id;
+const sA = await stepId("Learn SQL"); // root, available
+const sB = await stepId("Build API"); // depends on A, locked
+const sC = await stepId("System design"); // depends on B, locked
+
+const stepStatus = async (id) =>
+  (await scalar(uA, `select status from plan_steps where id='${id}'`)).status;
+const profile = async () =>
+  await scalar(uA, `select total_xp, level from profiles where id='${uA}'`);
+
+// Complete the root step: +100 XP, dependent B unlocks.
+await asUser(uA, `select set_step_status('${sA}', 'done') as r`);
+let p = await profile();
+if (p.total_xp !== 100 || p.level !== 1) {
+  throw new Error(`after A done expected 100xp/level1, got ${JSON.stringify(p)}`);
+}
+if ((await stepStatus(sB)) !== "available") {
+  throw new Error("completing A did not unlock B");
+}
+if ((await stepStatus(sC)) !== "locked") {
+  throw new Error("C unlocked too early (B not done yet)");
+}
+console.log("step done awards XP + unlocks dependents: OK");
+
+// Complete B: total 300 -> level 2 (triangular curve), C unlocks.
+await asUser(uA, `select set_step_status('${sB}', 'done') as r`);
+p = await profile();
+if (p.total_xp !== 300 || p.level !== 2) {
+  throw new Error(`after B done expected 300xp/level2, got ${JSON.stringify(p)}`);
+}
+if ((await stepStatus(sC)) !== "available") {
+  throw new Error("completing B did not unlock C");
+}
+console.log("cumulative XP levels the profile up: OK");
+
+// Undo B: ledger reverses to 100 XP / level 1, and C relocks.
+await asUser(uA, `select set_step_status('${sB}', 'available') as r`);
+p = await profile();
+if (p.total_xp !== 100 || p.level !== 1) {
+  throw new Error(`after B undo expected 100xp/level1, got ${JSON.stringify(p)}`);
+}
+if ((await stepStatus(sC)) !== "locked") {
+  throw new Error("undoing B did not relock C");
+}
+const evCount = (
+  await scalar(uA, `select count(*)::int n from xp_events where user_id='${uA}'`)
+).n;
+if (evCount !== 3) {
+  throw new Error(`expected 3 ledger events (done,done,undo), got ${evCount}`);
+}
+console.log("undo reverses XP via the ledger + relocks dependents: OK");
+
+// RLS: user B cannot transition A's step.
+let stepBlocked = false;
+try {
+  await asUser(uB, `select set_step_status('${sA}', 'skipped') as r`);
+} catch {
+  stepBlocked = true;
+  await db.exec("rollback").catch(() => {});
+}
+if (!stepBlocked) throw new Error("user B was able to transition A's step");
+console.log("set_step_status refuses another user's step: OK");
 
 console.log("\nALL MIGRATION CHECKS PASSED");
 await db.close();
