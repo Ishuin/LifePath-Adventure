@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { requireUser } from "@/lib/auth";
+import { XpLevelBadge } from "@/components/plan/XpLevelBadge";
 import { signOut } from "./actions";
 
 export default async function AppLayout({
@@ -16,7 +17,10 @@ export default async function AppLayout({
           LifePath
         </Link>
         <div className="flex items-center gap-4 text-sm">
-          <span className="text-[var(--color-muted)]">{user.email}</span>
+          <XpLevelBadge />
+          <span className="hidden text-[var(--color-muted)] md:inline">
+            {user.email}
+          </span>
           <form action={signOut}>
             <button
               type="submit"
