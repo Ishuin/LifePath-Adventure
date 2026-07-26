@@ -35,3 +35,10 @@
 ## 2024-05-24 - Sticky Position and Overflow
 **Learning:** `overflow: hidden` on a parent container breaks `position: sticky` for descendants. `overflow: clip` is a modern alternative that hides overflow without trapping sticky positioning.
 **Action:** Replace `overflow: hidden` with `overflow: clip` when sticky positioning is required within a container that needs to hide overflow.
+## 2024-07-25 - Playwright Triggering Active States
+**Learning:** Playwright's `element.hover()` followed by `element.evaluate` with MouseEvents doesn't consistently trigger CSS `:active` states for screenshots.
+**Action:** To reliably capture `:active` states in Playwright scripts, calculate the element's bounding box and use explicit `page.mouse.move(x, y)` followed by `page.mouse.down()` and `page.mouse.up()`.
+
+## 2024-07-25 - Tactile Feedback for Interactive Elements
+**Learning:** Providing `:hover` visual cues (like scaling up) is good, but without a corresponding `:active` state, interactions can feel hollow or unresponsive when actually clicked.
+**Action:** Enhance tactile visual feedback for interactive elements (e.g., buttons, logos, links) by adding `:active` CSS pseudo-classes with subtle transformations (e.g., `transform: scale(0.95)` or removing hover lift) to simulate a physical button press.

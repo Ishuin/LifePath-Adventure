@@ -65,6 +65,17 @@ header {
   font-size: 1.5em;
   font-weight: bold;
   color: #4CAF50;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: inline-block;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo:active {
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 .logo:focus-visible {
@@ -113,6 +124,10 @@ header {
 .nav-links a:not([aria-disabled="true"]):focus-visible {
   color: #4CAF50;
   transform: translateY(-2px); /* Slight lift */
+}
+
+.nav-links a:not([aria-disabled="true"]):active {
+  transform: translateY(0); /* Press down */
 }
 
 .nav-links a:focus-visible {
@@ -177,6 +192,10 @@ h1 {
 .cta-button:focus-visible {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.cta-button:active {
+  transform: scale(0.95);
 }
 
 .cta-button:focus-visible {
