@@ -1,4 +1,5 @@
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: 85px; /* Prevent anchor links from hiding under sticky header */
 }
@@ -65,11 +66,13 @@ header {
   font-size: 1.5em;
   font-weight: bold;
   color: #4CAF50;
+  text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
   display: inline-block;
 }
 
-.logo:hover {
+.logo:hover,
+.logo:focus-visible {
   transform: scale(1.05);
 }
 
@@ -82,6 +85,11 @@ header {
   outline: 2px solid #4CAF50;
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+.nav-links a[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .nav-links {

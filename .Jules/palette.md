@@ -42,3 +42,7 @@
 ## 2024-07-25 - Tactile Feedback for Interactive Elements
 **Learning:** Providing `:hover` visual cues (like scaling up) is good, but without a corresponding `:active` state, interactions can feel hollow or unresponsive when actually clicked.
 **Action:** Enhance tactile visual feedback for interactive elements (e.g., buttons, logos, links) by adding `:active` CSS pseudo-classes with subtle transformations (e.g., `transform: scale(0.95)` or removing hover lift) to simulate a physical button press.
+
+## 2024-07-27 - Dark Theme Browser UI Consistency
+**Learning:** Even with a dark background on `body`, native browser UI elements like scrollbars may remain bright white if the browser is not explicitly informed of the color scheme. Mixing inline styles and class-based CSS can also lead to maintenance issues and inconsistent overrides.
+**Action:** Always add `color-scheme: dark;` to the `html` selector for dark-themed apps to ensure native browser controls (like scrollbars) match the dark aesthetic. Additionally, migrate inline styles to CSS classes to ensure separation of concerns and allow for centralized pseudo-class (e.g., hover/focus) enhancements.
