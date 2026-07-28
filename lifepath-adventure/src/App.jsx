@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 // Self-contained inline SVG tile used as a decorative feature icon.
@@ -17,6 +17,7 @@ const featureTile = (letter) =>
 
 function App() {
   const canvasRef = useRef(null);
+  const [announcement, setAnnouncement] = useState('');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -188,12 +189,28 @@ function App() {
       </div>
       <header>
         <nav className="navbar" aria-label="Main navigation">
+          <div
+            aria-live="polite"
+            style={{
+              position: 'absolute',
+              width: '1px',
+              height: '1px',
+              padding: 0,
+              margin: '-1px',
+              overflow: 'hidden',
+              clip: 'rect(0, 0, 0, 0)',
+              whiteSpace: 'nowrap',
+              border: 0,
+            }}
+          >
+            {announcement}
+          </div>
           <a href="#hero" className="logo" aria-label="Lifepath Adventure, back to top">Lifepath Adventure</a>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => e.preventDefault()}>Gallery</a></li>
-            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => e.preventDefault()}>Contact</a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('This section is coming soon.'); }}>Gallery</a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('This section is coming soon.'); }}>Contact</a></li>
           </ul>
         </nav>
       </header>
