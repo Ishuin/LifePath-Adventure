@@ -174,7 +174,7 @@ function App() {
         }}
         onFocus={(e) => {
           e.target.style.top = '0';
-          e.target.style.outline = '3px solid #fff';
+          e.target.style.outline = '3px solid #050a19';
           e.target.style.outlineOffset = '-2px';
         }}
         onBlur={(e) => {
@@ -209,8 +209,8 @@ function App() {
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('This section is coming soon.'); }}>Gallery</a></li>
-            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('This section is coming soon.'); }}>Contact</a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('Gallery section is coming soon.'); }}>Gallery</a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('Contact section is coming soon.'); }}>Contact</a></li>
           </ul>
         </nav>
       </header>
