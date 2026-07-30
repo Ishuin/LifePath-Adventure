@@ -18,6 +18,10 @@ const featureTile = (letter) =>
 function App() {
   const canvasRef = useRef(null);
   const [announcement, setAnnouncement] = useState('');
+  const announce = (message) => {
+    setAnnouncement('');
+    setTimeout(() => setAnnouncement(message), 50);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -209,8 +213,8 @@ function App() {
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('Gallery section is coming soon.'); }}>Gallery</a></li>
-            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); setAnnouncement('Contact section is coming soon.'); }}>Contact</a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Gallery section is coming soon.'); }}>Gallery <small aria-hidden="true">(Soon)</small></a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Contact section is coming soon.'); }}>Contact <small aria-hidden="true">(Soon)</small></a></li>
           </ul>
         </nav>
       </header>
@@ -218,7 +222,7 @@ function App() {
         <section id="hero" aria-labelledby="hero-heading">
           <h1 id="hero-heading">Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
-          <a className="cta-button" href="#features">Explore Now</a>
+          <a className="cta-button" href="#features">Explore Now <span aria-hidden="true">↓</span></a>
         </section>
         <section id="features" aria-labelledby="features-heading">
           <h2 id="features-heading">Key Features</h2>

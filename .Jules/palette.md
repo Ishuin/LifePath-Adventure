@@ -49,3 +49,6 @@
 ## 2026-07-29 - Unique ARIA Live Updates for Disabled Links
 **Learning:** When using React state to manage an `aria-live` region for screen reader feedback on disabled elements, consecutively clicking different disabled elements that trigger the exact same string (e.g., "Coming soon") will not cause React to update the DOM. Without a DOM update, the screen reader won't re-announce the message. Providing unique, context-specific strings (e.g., "Gallery is coming soon", "Contact is coming soon") ensures state updates and re-announcements.
 **Action:** Always include specific contextual data (like the link's name) in generic screen reader state messages to guarantee uniqueness for consecutive identical actions.
+## 2024-07-30 - ARIA Live Region State Flushing
+**Learning:** Appending a timestamp (e.g. `Date.now()`) to an `aria-live` string to force a re-render causes screen readers to audibly read the literal timestamp numbers to the user, creating a severe accessibility regression.
+**Action:** To guarantee consecutive identical announcements are read by a screen reader, clear the React state string first and then set the new string using a short timeout (e.g., `setTimeout(() => setAnnouncement(message), 50);`) instead of polluting the string with timestamps or random characters.
