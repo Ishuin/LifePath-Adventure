@@ -226,23 +226,23 @@ function App() {
         </section>
         <section id="features" aria-labelledby="features-heading">
           <h2 id="features-heading">Key Features</h2>
-          <div className="feature-cards">
-            <div className="card">
+          <ul className="feature-cards">
+            <li className="card">
               <img src={featureTile('E')} alt="" />
               <h3>Explore</h3>
               <p>Discover vast and diverse worlds.</p>
-            </div>
-            <div className="card">
+            </li>
+            <li className="card">
               <img src={featureTile('B')} alt="" />
               <h3>Battle</h3>
               <p>Engage in strategic combat.</p>
-            </div>
-            <div className="card">
+            </li>
+            <li className="card">
               <img src={featureTile('C')} alt="" />
               <h3>Customize</h3>
               <p>Forge your unique character.</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </section>
         <section id="about" aria-labelledby="about-heading">
           <h2 id="about-heading">About the Game</h2>
