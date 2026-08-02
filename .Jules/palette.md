@@ -52,3 +52,7 @@
 ## 2024-07-30 - ARIA Live Region State Flushing
 **Learning:** Appending a timestamp (e.g. `Date.now()`) to an `aria-live` string to force a re-render causes screen readers to audibly read the literal timestamp numbers to the user, creating a severe accessibility regression.
 **Action:** To guarantee consecutive identical announcements are read by a screen reader, clear the React state string first and then set the new string using a short timeout (e.g., `setTimeout(() => setAnnouncement(message), 50);`) instead of polluting the string with timestamps or random characters.
+
+## 2024-08-02 - In-page Navigation Focus Routing
+**Learning:** Native anchor links for in-page navigation (e.g. `<a href="#features">`) scroll the page correctly but do not transfer keyboard focus to the target element unless that target element is programmatically focusable. This breaks keyboard navigation, as subsequent tabs start from the original anchor link instead of the newly scrolled section.
+**Action:** When implementing semantic `<section>` landmarks that are targets of in-page anchor navigation, always append `tabIndex="-1"` to the target element and apply a `:focus { outline: none; }` CSS rule. This ensures keyboard focus follows the visual scroll state while suppressing unwanted focus rings for mouse users.
