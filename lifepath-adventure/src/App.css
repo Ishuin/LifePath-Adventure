@@ -150,7 +150,8 @@ main {
   padding-top: 80px; /* Space for fixed header */
 }
 
-main:focus {
+main:focus,
+section:focus {
   outline: none;
 }
 

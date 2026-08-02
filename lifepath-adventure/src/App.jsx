@@ -219,12 +219,12 @@ function App() {
         </nav>
       </header>
       <main id="main-content" tabIndex="-1">
-        <section id="hero" aria-labelledby="hero-heading">
+        <section id="hero" aria-labelledby="hero-heading" tabIndex="-1">
           <h1 id="hero-heading">Embark on Your Lifepath</h1>
           <p className="hero-subtitle">A pixelated sci-fi RPG where your choices matter.</p>
           <a className="cta-button" href="#features">Explore Now <span aria-hidden="true">↓</span></a>
         </section>
-        <section id="features" aria-labelledby="features-heading">
+        <section id="features" aria-labelledby="features-heading" tabIndex="-1">
           <h2 id="features-heading">Key Features</h2>
           <ul className="feature-cards">
             <li className="card">
@@ -244,7 +244,7 @@ function App() {
             </li>
           </ul>
         </section>
-        <section id="about" aria-labelledby="about-heading">
+        <section id="about" aria-labelledby="about-heading" tabIndex="-1">
           <h2 id="about-heading">About the Game</h2>
           <p>Lifepath Adventure is a pixelated sci-fi RPG that combines exploration, strategic combat, and deep character customization. Unravel the mysteries of a lost civilization and shape your own destiny.</p>
         </section>
