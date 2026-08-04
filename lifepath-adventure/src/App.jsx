@@ -213,8 +213,8 @@ function App() {
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Gallery section is coming soon.'); }}>Gallery <small aria-hidden="true">(Soon)</small></a></li>
-            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Contact section is coming soon.'); }}>Contact <small aria-hidden="true">(Soon)</small></a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Gallery section is coming soon.'); }}>Gallery <small className="badge" aria-hidden="true">Soon</small></a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Contact section is coming soon.'); }}>Contact <small className="badge" aria-hidden="true">Soon</small></a></li>
           </ul>
         </nav>
       </header>
