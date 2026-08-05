@@ -18,9 +18,18 @@ const featureTile = (letter) =>
 function App() {
   const canvasRef = useRef(null);
   const [announcement, setAnnouncement] = useState('');
+  const [activeSoonLink, setActiveSoonLink] = useState(null);
+
   const announce = (message) => {
     setAnnouncement('');
     setTimeout(() => setAnnouncement(message), 50);
+  };
+
+  const handleSoonClick = (e, sectionName, linkId) => {
+    e.preventDefault();
+    announce(`${sectionName} section is coming soon.`);
+    setActiveSoonLink(linkId);
+    setTimeout(() => setActiveSoonLink(null), 2000);
   };
 
   useEffect(() => {
@@ -213,8 +222,8 @@ function App() {
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Gallery section is coming soon.'); }}>Gallery <small className="badge" aria-hidden="true">Soon</small></a></li>
-            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => { e.preventDefault(); announce('Contact section is coming soon.'); }}>Contact <small className="badge" aria-hidden="true">Soon</small></a></li>
+            <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => handleSoonClick(e, 'Gallery', 'gallery')}>Gallery <small className="badge" aria-hidden="true">{activeSoonLink === 'gallery' ? 'Not yet!' : 'Soon'}</small></a></li>
+            <li><a href="#contact" aria-disabled="true" title="Coming soon" onClick={(e) => handleSoonClick(e, 'Contact', 'contact')}>Contact <small className="badge" aria-hidden="true">{activeSoonLink === 'contact' ? 'Not yet!' : 'Soon'}</small></a></li>
           </ul>
         </nav>
       </header>
