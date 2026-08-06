@@ -60,3 +60,6 @@
 ## 2024-08-05 - Disabled Link Tactile Feedback
 **Learning:** Touch device users don't get the `cursor: not-allowed` hover state for disabled links, which can result in a "dead click" feeling when tapping them.
 **Action:** Always provide brief visual feedback (e.g. changing badge text to "Not yet!" for 2 seconds) on click for visually disabled `<a>` tags to confirm the interaction on touch devices.
+## 2024-05-18 - Restoring List Semantics
+**Learning:** Removing default list styling with `list-style: none` in CSS strips the native list semantics in VoiceOver, preventing screen reader users from accessing structural grouping cues and item counts for navigation and feature lists.
+**Action:** When applying `list-style: none` to semantic `<ul>` or `<ol>` elements for layout purposes, always restore explicit list semantics by adding `role="list"` directly on the HTML element.
