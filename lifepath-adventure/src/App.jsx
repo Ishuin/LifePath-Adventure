@@ -204,6 +204,7 @@ function App() {
         <nav className="navbar" aria-label="Main navigation">
           <div
             aria-live="polite"
+            aria-atomic="true"
             style={{
               position: 'absolute',
               width: '1px',
@@ -219,7 +220,7 @@ function App() {
             {announcement}
           </div>
           <a href="#hero" className="logo" aria-label="Lifepath Adventure, back to top">Lifepath Adventure</a>
-          <ul className="nav-links">
+          <ul className="nav-links" role="list">
             <li><a href="#features">Features</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#gallery" aria-disabled="true" title="Coming soon" onClick={(e) => handleSoonClick(e, 'Gallery', 'gallery')}>Gallery <small className="badge" aria-hidden="true">{activeSoonLink === 'gallery' ? 'Not yet!' : 'Soon'}</small></a></li>
@@ -235,7 +236,7 @@ function App() {
         </section>
         <section id="features" aria-labelledby="features-heading" tabIndex="-1">
           <h2 id="features-heading">Key Features</h2>
-          <ul className="feature-cards">
+          <ul className="feature-cards" role="list">
             <li className="card">
               <img src={featureTile('E')} alt="" />
               <h3>Explore</h3>
